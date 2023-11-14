@@ -1,3 +1,7 @@
-body {
-    background-color: red;
+.body {
+    background-color: #af763a;
+}
+
+.logo {
+    max-height: 50px;
 }
