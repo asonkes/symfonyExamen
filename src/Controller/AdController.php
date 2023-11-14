@@ -19,4 +19,12 @@ class AdController extends AbstractController
             'ad' => $ad,
         ]);
     }
+
+    #[Route("/vente/{id}", name: "ad_show")]
+    public function show(int $id, Ad $ad): Response
+    {
+        return $this->render('ad/show.html.twig', [
+            'ad' => $ad
+        ]);
+    }
 }
