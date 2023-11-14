@@ -12,7 +12,7 @@
 				<div class="col-sm-3 mt-4 border mb-4 mx-3">
 					<h2 class="p-2 text-center">{{ ad.marque }}
 						{{ ad.modele }}</h2>
-					<a href="{{ path('ad_show', {'id':ad.id})}}">
+					<a href="{{ path('ads', {'id':ad.id})}}">
 						<img class="image-voiture img-fluid" src="{{ad.cover}}">
 					</a>
 					<p class="mt-3">Kilométrage :
