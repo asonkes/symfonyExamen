@@ -1,15 +1,19 @@
 <?php
 
+/**
+ * Detail de la base de données 'voiture'.
+ */
+
 namespace App\Entity;
 
-use App\Repository\AdRepository;
+use App\Repository\VoitureRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: AdRepository::class)]
-class Ad
+#[ORM\Entity(repositoryClass: VoitureRepository::class)]
+class Voiture
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -23,7 +27,7 @@ class Ad
     private ?string $modele = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $cover = null;
+    private ?string $image = null;
 
     #[ORM\Column]
     private ?int $km = null;
@@ -34,7 +38,7 @@ class Ad
     #[ORM\Column(type: Types::SMALLINT)]
     private ?int $nbproprio = null;
 
-    #[ORM\Column]
+    #[ORM\Column(type: Types::INTEGER)]
     private ?int $cylindree = null;
 
     #[ORM\Column(type: Types::SMALLINT)]
@@ -55,12 +59,12 @@ class Ad
     #[ORM\Column]
     private ?int $circ = null;
 
-    #[ORM\OneToMany(mappedBy: 'relation', targetEntity: Image::class, orphanRemoval: true)]
-    private Collection $images;
+    #[ORM\OneToMany(mappedBy: 'voiture_id', targetEntity: Image::class)]
+    private Collection $myImages;
 
     public function __construct()
     {
-        $this->images = new ArrayCollection();
+        $this->myImages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -92,14 +96,14 @@ class Ad
         return $this;
     }
 
-    public function getCover(): ?string
+    public function getImage(): ?string
     {
-        return $this->cover;
+        return $this->image;
     }
 
-    public function setCover(string $cover): static
+    public function setImage(string $image): static
     {
-        $this->cover = $cover;
+        $this->image = $image;
 
         return $this;
     }
@@ -217,9 +221,9 @@ class Ad
         return $this->circ;
     }
 
-    public function setCirc(int $circ): static
+    public function setCirc(int $Circ): static
     {
-        $this->circ = $circ;
+        $this->circ = $Circ;
 
         return $this;
     }
@@ -227,27 +231,27 @@ class Ad
     /**
      * @return Collection<int, Image>
      */
-    public function getImages(): Collection
+    public function getMyImages(): Collection
     {
-        return $this->images;
+        return $this->myImages;
     }
 
-    public function addImage(Image $image): static
+    public function addMyImage(Image $myImage): static
     {
-        if (!$this->images->contains($image)) {
-            $this->images->add($image);
-            $image->setRelation($this);
+        if (!$this->myImages->contains($myImage)) {
+            $this->myImages->add($myImage);
+            $myImage->setVoitureId($this);
         }
 
         return $this;
     }
 
-    public function removeImage(Image $image): static
+    public function removeMyImage(Image $myImage): static
     {
-        if ($this->images->removeElement($image)) {
+        if ($this->myImages->removeElement($myImage)) {
             // set the owning side to null (unless already changed)
-            if ($image->getRelation() === $this) {
-                $image->setRelation(null);
+            if ($myImage->getVoitureId() === $this) {
+                $myImage->setVoitureId(null);
             }
         }
 

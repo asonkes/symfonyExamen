@@ -2,7 +2,7 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Ad;
+use App\Entity\Voiture;
 use App\Entity\Image;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -15,11 +15,11 @@ class AppFixtures extends Fixture
         $faker = FakerFactory::create('fr_FR');
 
         for ($i = 1; $i <= 18; $i++) {
-            $ad = new Ad();
-            $ad
+            $voiture = new Voiture();
+            $voiture
                 ->setMarque($faker->randomElement(['Ford', 'Peugeot', 'Kia', 'Volkswagen', 'Hyundai', 'Dacia', 'Fiat', 'Renault', 'Opel']))
                 ->setModele($faker->word)
-                ->setCover($faker->randomElement([
+                ->setImage($faker->randomElement([
                     'https://soco.be/sites/default/files/styles/gallery_big/public/images/cars-pictures/c7f95e1c-ba59-4525-8ba4-adc0b0febfff.jpg?itok=soQZHu6u',
                     'https://soco.be/sites/default/files/styles/gallery_big/public/images/cars-pictures-carlab/24857/outside_360/12.jpg?itok=UxP1EcxY',
                     'https://soco.be/sites/default/files/styles/gallery_big/public/images/cars-pictures/aab7e372-407b-4fd7-821b-3889845ce8c1.jpg?itok=LCSqO825',
@@ -36,15 +36,15 @@ class AppFixtures extends Fixture
                 ->setTransmission($faker->randomElement(['Manuelle', 'Automatique']))
                 ->setDescription($faker->sentence)
                 ->setTexte($faker->sentence)
-                ->setCirc($faker->numberBetween(2017, 2020));
+                ->setcirc($faker->numberBetween(2017, 2020));
 
-            $manager->persist($ad);
+            $manager->persist($voiture);
 
 
             for ($j = 1; $j <= 5; $j++) {
                 $image = new Image();
                 $image
-                    ->setName(implode(' ', [$ad->getMarque()]))
+                    ->setName(implode(' ', [$voiture->getMarque()]))
                     ->setUrl($faker->randomElement([
                         'https://soco.be/sites/default/files/styles/gallery_big/public/images/cars-pictures/39d292de-7343-4e67-bd3b-a7dc0f7f6e89.jpg?itok=sAUdSuZN',
                         'https://soco.be/sites/default/files/styles/gallery_big/public/images/cars-pictures/696521da-3ba1-4983-b0b3-c653c7e769f3.jpg?itok=cjdFOaqL',
@@ -62,7 +62,7 @@ class AppFixtures extends Fixture
                         'https://soco.be/sites/default/files/styles/gallery_big/public/images/cars-pictures/638cc608-3a55-45eb-9938-0d2a9795ee2d.jpg?itok=tnQJEDII',
                         'https://soco.be/sites/default/files/styles/gallery_big/public/images/cars-pictures/2709b302-f774-45e2-b55d-9e7341e09d71.jpg?itok=XSITgy-Z'
                     ]))
-                    ->setVoitureId($ad);
+                    ->setVoitureId($voiture);
                 $manager->persist($image);
             }
         }

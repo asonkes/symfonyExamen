@@ -8,19 +8,19 @@
 		<div class="row justify-content-center p-2">
 			<h1 class="mt-3">Vente</h1>
 
-			{% for ad in ad %}
+			{% for voiture in voiture %}
 				<div class="col-sm-3 mt-4 border mb-4 mx-3">
-					<h2 class="p-2 text-center">{{ ad.marque }}
-						{{ ad.modele }}</h2>
-					<a href="{{ path('ads', {'id':ad.id})}}">
-						<img class="image-voiture img-fluid" src="{{ad.cover}}">
+					<h2 class="p-2 text-center">{{ voiture.marque }}
+						{{ voiture.modele }}</h2>
+					<a href="{{ path('vente_show', {'id':voiture.id})}}">
+						<img class="image-voiture img-fluid" src="{{voiture.image}}">
 					</a>
 					<p class="mt-3">Kilométrage :
-						{{ ad.km }}
+						{{ voiture.km }}
 						km
 					</p>
 					<p class="mt-2">Prix :
-						{{ ad.prix }}
+						{{ voiture.prix }}
 						€</p>
 				</div>
 			{% endfor %}

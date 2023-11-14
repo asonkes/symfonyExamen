@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Detail de la base de données image dans le projet.
+ */
+
 namespace App\Entity;
 
 use App\Repository\ImageRepository;
@@ -8,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: ImageRepository::class)]
 class Image
 {
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -15,7 +20,7 @@ class Image
 
     #[ORM\ManyToOne(inversedBy: 'images')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?ad $voiture_id = null;
+    private ?Voiture $voiture_id = null;
 
     /**
      * Sert à dire si le champ peut etre nul ou pas... Ici, c'est non = nullable.
@@ -34,13 +39,12 @@ class Image
         return $this->id;
     }
 
-    public function getVoitureId(): ?ad
+    public function getVoitureId(): ?voiture
     {
         return $this->voiture_id;
     }
 
-    public function setVoitureId(?ad
-    $voiture_id): static
+    public function setVoitureId(?voiture $voiture_id): static
     {
         $this->voiture_id = $voiture_id;
 
