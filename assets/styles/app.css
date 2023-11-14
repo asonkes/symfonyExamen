@@ -7,32 +7,24 @@
 }
 
 .voiture-carroussel {
-    width: 150px;
+    width: 100px;
 }
 
-.starsimg{
-    height: 200px;
+label {
+    margin-bottom: 15px;
+    margin-right: 5px;
+}
+
+.image-voiture-carousel {
+    max-width: 150px;
+    height: auto;
+}
+
+.carousel-item img {
     width: 100%;
-    object-fit: cover;
-    display: block;
-}
+    max-width: 100%;
+    height: auto;
+  }
 
-.annonce-title{
-    padding: 2em;
-    background-size: cover;
-    background-position: center center;
-}
 
-.annonce-title h1, .annonce-title p{
-    color: white;
-    text-shadow: 3px 3px 3px rgba(0,0,0,0.5);
-}
 
-.carousel-item img{
-    height: 400px;
-    object-fit: cover;
-}
-
-.carousel-caption{
-    text-shadow: 3px 3px 3px rgba(0,0,0,0.5);
-}

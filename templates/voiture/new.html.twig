@@ -1,18 +1,18 @@
 {% extends "base.html.twig" %}
 
 
-{% block title %}Création d'une annonce
+{% block title %}Ajouter une Voiture
 {% endblock %}
 
 {% block body %}
-	<div class="container">
-		<h1>Création d'une nouvelle annonce</h1>
+	<div class="container mt-5">
+		<h1>Ajout d'une Nouvelle Voiture</h1>
 
 		{{ form_start(form) }}
 
 		{{form_widget(form)}}
 
-		<button type="submit" class="btn btn-primary mt-3">Création d'une annonce</button>
+		<button type="submit" class="btn btn-primary mt-3">Ajouter une Voiture</button>
 
 		{{ form_end(form) }}
 	</div>

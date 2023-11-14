@@ -37,33 +37,31 @@
 				<p class="mt-2">Option :
 					{{ voiture.texte }}</p>
 			</div>
-		</div>
 
-		<!-- Carrousel d'images indépendantes -->
-		<div id="carouselExample" class="carousel slide mt-4" data-ride="carousel">
-			<div class="carousel-inner">
+			<!-- Carrousel d'images indépendantes -->
 
-
-				{% for image in voiture.myImages %}
-
-					<div class="carousel-item {% if loop.first %}active{% endif %}">
-						<img class="voiture-carroussel" src="{{ asset(image.url) }}" class="d-block w-100" alt="{{ image.name }}">
-					</div>
-
-				{% endfor %}
-
-
+			<div id="carouselExampleIndicators" class="carousel slide carousel-fade carousel-news-actus col-sm-8 mt-5" data-bs-ride="carousel">
+				<ol class="carousel-indicators">
+					{% for image in voiture.getMyImages() %}
+						<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ loop.index0 }}" {% if loop.first %} class="active" {% endif %}></li>
+					{% endfor %}
+				</ol>
+				<div class="carousel-inner">
+					{% for image in voiture.getMyImages() %}
+						<div class="carousel-item {% if loop.first %}active{% endif %}">
+							<img src="{{ image.Url }}" alt="">
+						</div>
+					{% endfor %}
+				</div>
+				<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</a>
+				<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</a>
 			</div>
-
-			<a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
-				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				<span class="sr-only">Previous</span>
-			</a>
-
-			<a class="carousel-control-next" href="#carouselExample" role="button" data-slide="next">
-				<span class="carousel-control-next-icon" aria-hidden="true"></span>
-				<span class="sr-only">Next</span>
-			</a>
 		</div>
-	</div>
-{% endblock %}
+
+	{% endblock %}
